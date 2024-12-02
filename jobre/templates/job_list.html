@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job and Internship Listings - CareerConnect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    /* Header Styles */
+    #header {
+      background: #0d6efd;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #header .navmenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #header .navmenu ul li {
+      margin: 0 15px;
+    }
+
+    #header .navmenu ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    #header .navmenu ul li a:hover {
+      color: #ffc107;
+    }
+
+    /* Job and Internship List Container Styles */
+    .list-container {
+      max-width: 100%;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #0d6efd;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .list-cards-container {
+      display: flex;
+      overflow-x: scroll;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s;
+      min-width: 250px;
+      max-width: 300px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card .title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .card .company,
+    .card .location,
+    .card .salary {
+      font-size: 16px;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    .card .description {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .list-container .more-listings {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn-primary {
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #0b5ed7;
+    }
+
+    /* Apply Button Styles */
+    .apply-btn {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .apply-btn:hover {
+      background: #218838;
+    }
+
+    /* Flash Message Styles */
+    .alert {
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .alert.success {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .alert.error {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header id="header">
+    <div class="logo">CareerConnect</div>
+    <nav class="navmenu">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Flash Messages -->
+  <div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="alert {{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <h1>Job Listings</h1>
+    {% for job in jobs %}
+        <div class="job">
+            <h2>{{ job.title }}</h2>
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p><strong>Salary:</strong> {{ job.salary }}</p>
+            <p><strong>Description:</strong> {{ job.description }}</p>
+            <form method="POST" action="{{ url_for('job_list') }}">
+                <input type="hidden" name="job_title" value="{{ job.title }}">
+                <button type="submit">Apply Now</button>
+            </form>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>

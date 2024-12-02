@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CareerConnect</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    #header {
+      background: #0d6efd;
+      padding: 15px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #header .logo h1 {
+      color: #fff;
+      margin: 0;
+      font-size: 24px;
+      display: inline-block;
+    }
+
+    #header .navmenu {
+      float: right;
+    }
+
+    #header .navmenu ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    #header .navmenu ul li {
+      margin-left: 20px;
+    }
+
+    #header .navmenu ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    #header .navmenu ul li a:hover,
+    #header .navmenu ul li a.active {
+      color: #ffc107;
+    }
+
+    #header .btn-getstarted {
+      background: #ffc107;
+      padding: 10px 20px;
+      color: #000;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    #header .btn-getstarted:hover {
+      background: #ffcd39;
+    }
+
+    /* Hero Section */
+    #hero {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      background: url('../static/images/backgroundimage.jpg') no-repeat center center/cover;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #hero h2 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    #hero p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    /* About Section */
+    #about {
+      padding: 80px 20px;
+      background: #f9f9f9;
+      margin-top: 40px;
+    }
+
+    #about h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #0d6efd;
+    }
+
+    .icon-box {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .icon-box h3 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .icon-box p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Footer Section */
+    #footer {
+      background: #333;
+      color: #fff;
+      padding: 40px 20px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    #footer h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    #footer p {
+      margin: 5px 0;
+      color: #bbb;
+    }
+
+    #footer a {
+      color: #ffc107;
+      text-decoration: none;
+    }
+
+    /* Scroll Top Button */
+    #scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: #0d6efd;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+
+    #scroll-top:hover {
+      background: #0b5ed7;
+    }
+  </style>
+</head>
+
+<body class="index-page" data-bs-spy="scroll" data-bs-target="#navmenu">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1>CareerConnect</h1>
+      </a>
+
+      <!-- Nav Menu -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="{{ url_for('register') }}">Register</a></li>
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10">
+            <h2>CareerConnect</h2>
+            <p>The ultimate job portal connecting ambitious talent with forward-thinking companies. Your career journey starts here.</p>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h3>About</h3>
+        <p>Welcome to CareerConnect , the ultimate destination for job seekers and employers to connect and succeed. We are committed to bridging the gap between talent and opportunity by providing a seamless platform for career advancement and recruitment solutions.
+
+          At CareerConnect, we b]
+          elieve in empowering individuals to achieve their professional goals and helping organizations discover the perfect candidates to drive success. Whether you're looking for your dream job or seeking to hire top talent, our platform is designed to meet your needs with efficiency and ease.
+          
+          What We Offer:
+          For Job Seekers: Explore thousands of job listings across industries, get career insights, and apply effortlessly with just a few clicks.
+          For Employers: Access a diverse pool of qualified candidates, streamline your hiring process, and build a winning team.
+          Personalized Experience: From tailored job recommendations to advanced recruitment tools, we ensure a user-friendly and personalized experience for everyone.
+          Join us today and take the next step toward a brighter future. Together, we can build careers, strengthen teams, and create success stories.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <h4>Contact Us</h4>
+      <p>The Smart Bridge, Hyderabad, Telangana, India</p>
+      <p><strong>Phone:</strong> +1 5589 55488 55</p>
+      <p><strong>Email:</strong> info@example.com</p>
+    </div>
+  </footer><!-- End Footer -->
+
+  <!-- Scroll Top Button -->
+  <a href="#" id="scroll-top"><i class="bi bi-arrow-up-short"></i></a>
+
+</body>
+
+</html> 

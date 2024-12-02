@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - CareerConnect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f4f4f9;
+    }
+
+    /* Header Styles */
+    #header {
+      background: #0d6efd;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #header .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    #header .navmenu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    #header .navmenu ul li {
+      margin: 0 15px;
+    }
+
+    #header .navmenu ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    #header .navmenu ul li a:hover {
+      color: #ffc107;
+    }
+
+    /* Profile Container Styles */
+    .profile-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .profile-container h2 {
+      font-size: 24px;
+      color: #0d6efd;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .form-group input[type="file"] {
+      padding: 5px;
+    }
+
+    .btn-primary {
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #0b5ed7;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header id="header">
+    <div class="logo">CareerConnect</div>
+    <nav class="navmenu">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/job_list">Job List</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Profile Container -->
+  <div class="profile-container">
+    <h2>User Profile</h2>
+    <form action="/profile" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" value="{{ name or '' }}">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" value="{{ age or '' }}">
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender">
+          <option value="" disabled {{ 'selected' if not gender }}>Select your gender</option>
+          <option value="male" {{ 'selected' if gender == 'male' }}>Male</option>
+          <option value="female" {{ 'selected' if gender == 'female' }}>Female</option>
+          <option value="other" {{ 'selected' if gender == 'other' }}>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="headline">Headline</label>
+        <input type="text" id="headline" name="headline" placeholder="Enter a short headline" value="{{ headline or '' }}">
+      </div>
+      <div class="form-group">
+        <label for="experience">Experience</label>
+        <textarea id="experience" name="experience" rows="4" placeholder="Describe your work experience">{{ experience or '' }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="education">Education</label>
+        <textarea id="education" name="education" rows="4" placeholder="Describe your education background">{{ education or '' }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="skills">Skills</label>
+        <textarea id="skills" name="skills" rows="3" placeholder="List your skills">{{ skills or '' }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter your location" value="{{ location or '' }}">
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact</label>
+        <input type="email" id="contact" name="contact" placeholder="Enter your email or phone" value="{{ contact or '' }}">
+      </div>
+      <div class="form-group">
+        <label for="resume">Upload Resume</label>
+        <input type="file" id="resume" name="resume">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn-primary">Save Profile</button>
+      </div>
+    </form>
+
+    {% if resume %}
+    <p>Resume uploaded: <a href="{{ url_for('static', filename=resume) }}">Download</a></p>
+    {% endif %}
+
+    <div id="successMessage" class="success-message">
+      Profile successfully saved!
+    </div>
+  </div>
+
+</body>
+
+</html>
